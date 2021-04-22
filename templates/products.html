@@ -26,8 +26,12 @@
 						<td>{{product.category}}</td>
 						<td>{{product.price}}</td>
 						<td>{{product.description}}</td>
-						<td><button type="button" class="btn btn-warning btn-sm">Update</button></td>
-						<td><button type="button" class="btn btn-danger btn-sm">Delete</button></td>
+						<td>
+							<a href="{% url 'updateProduct' product.id%}"><button type="button" class="btn btn-warning btn-sm">Update</button></a>
+						</td>
+						<td>
+							<a href="{% url 'deleteProduct' product.id %}"><button type="button" class="btn btn-danger btn-sm">Delete</button></a>
+						</td>
 					</tr>			
 				{% endfor %}
 			</tbody>
