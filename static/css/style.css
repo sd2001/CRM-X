@@ -104,3 +104,31 @@ td{
 	align-items: center;
 	padding-top: 20px;
 }
+
+.createOrder{
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 5%;
+	padding: 5%;
+	background-color: azure;
+}
+
+.submit-button{
+	display: flex;
+	justify-content: center;
+	column-gap: 20px;
+	align-items: center;
+	padding-top: 20px;
+}
+
+.deleteOrder{
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 5%;
+	padding: 5%;
+	background-color: rgb(247, 230, 216);
+	text-align: center;
+	
+	
+}
+
