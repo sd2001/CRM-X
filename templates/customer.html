@@ -106,7 +106,7 @@
 			<thead class="table-dark">
 				<tr>
 				<th scope="col">Product</th>
-				<th scope="col">Category</th>
+				<th scope="col">Status</th>
 				<th scope="col">Price</th>
 				<th scope="col">Date Ordered</th>
 				<th scope="col">Update</th>
@@ -117,11 +117,15 @@
 				{% for order in orders %}
 					<tr>
 						<th scope="row">{{order.product}}</th>
-						<td>{{order.product.category}}</td>
+						<td>{{order.status}}</td>
 						<td>{{order.product.price}}</td>
 						<td>{{order.date_created}}</td>
-						<td><button type="button" class="btn btn-warning btn-sm">Update</button></td>
-						<td><button type="button" class="btn btn-danger btn-sm">Delete</button></td>
+						<td>
+								<a href="{% url 'updateOrder' order.id %}""><button type="button" action="{% url 'updateOrder' order.id %}" class="btn btn-warning btn-sm">Update</button></a>
+							</td>
+							<td>
+								<a href="{% url 'deleteOrder' order.id %}""><button type="button" class="btn btn-danger btn-sm">Delete</button></a>
+							</td>
 					</tr>			
 				{% endfor %}
 			</tbody>

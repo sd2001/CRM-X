@@ -112,8 +112,12 @@
 							<td>{{order.customer.name}}</td>
 							<td>{{order.date_created}}</td>
 							<td>{{order.status}}</td>
-							<td><button type="button" class="btn btn-warning btn-sm">Update</button></td>
-							<td><button type="button" class="btn btn-danger btn-sm">Delete</button></td>
+							<td>
+								<a href="{% url 'updateOrder' order.id %}""><button type="button" action="{% url 'updateOrder' order.id %}" class="btn btn-warning btn-sm">Update</button></a>
+							</td>
+							<td>
+								<a href="{% url 'deleteOrder' order.id %}""><button type="button" class="btn btn-danger btn-sm">Delete</button></a>
+							</td>
 							</tr>
 						{% endfor %}
 					</tbody>
