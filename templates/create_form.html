@@ -1,0 +1,18 @@
+{%  extends 'main.html' %}
+{%load crispy_forms_tags %} 
+
+{% block title %}
+<title>CRM | Update </title>
+{% endblock %}
+
+{% block content %}
+<form action="" method="POST" class="createOrder">
+	<h3>{{ val}}</h3>
+	<hr>
+	{% csrf_token %}
+	{{form|crispy}}
+	<div class="submit-button">
+		<button type="submit" class="btn btn-success">Confirm</button>
+	</div>
+</form>
+{% endblock %}
