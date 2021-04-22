@@ -1,0 +1,17 @@
+{%  extends 'main.html' %}
+{%load crispy_forms_tags %} 
+
+{% block title %}
+<title>CRM | Delete </title>
+{% endblock %}
+
+{% block content %}
+<form action="" method="POST" class="deleteOrder">
+<h4>Are you sure you want to delete {{order.product.name}}{{order.name}}?</h4>
+	<!-- <br> -->
+	{% csrf_token %}
+	<div class="submit-button">
+		<button type="submit" class="btn btn-danger">Delete</button>
+	</div>
+</form>
+{% endblock %}
