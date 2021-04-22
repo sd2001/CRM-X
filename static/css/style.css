@@ -1,0 +1,106 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;	
+	text-decoration: none;
+	/* font-family: 'Roboto', sans-serif; */
+}
+
+html, body {
+  height: 100%;
+}
+
+
+.content-dash{
+	display: flex;
+	width: 100%;
+	min-height: 100vh;
+
+}
+
+.left{
+	flex: 3.8;
+	background-color: rgba(238, 231, 231, 0.699);
+	padding: 20px;
+	height: 1000px;
+	/* border-right: 2px solid rgb(180, 175, 175); */
+}
+
+.main{
+	flex: 10;
+	/* background-color: lavender; */
+	padding: 20px;
+}
+
+td{
+	text-decoration: none;
+}
+
+#total-orders{
+	background-color: #4cb4c7;
+}
+
+
+#orders-delivered{
+	background-color: #70cca1;
+}
+
+#orders-pending{
+	background-color: #7CD1C0;
+}
+
+#outfordel{
+	background-color: goldenrod;
+}
+.status-box{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	grid-gap: 20px;	
+}
+/* .customers{
+	background-color: white;
+} */
+
+.customers table{
+	background-color: rgb(255, 255, 255);
+	width: 100%;
+	text-decoration: none;
+}
+
+.main table{
+	background-color: rgb(233, 235, 162);
+}
+
+.products{
+	margin-top: 1%;
+	margin-left: 10%;
+	margin-right: 10%;
+	height: 100%;
+	background-color: rgb(232, 230, 255);
+	border-radius: 15px;
+	/* position: relative; */
+}
+
+.table-wrap{
+	position: relative;
+	/* width: 80%; */
+	margin:-5px 20px 10px 20px;
+	background-color:rgb(255, 255, 255);
+}
+
+.customer-info{
+	border-radius: 10px;
+	background-color: rgb(250, 250, 250);
+	padding: 5%;
+	
+
+}
+
+.crud-button{
+	display: flex;
+	justify-content: center;
+	column-gap: 20px;
+	align-items: center;
+	padding-top: 20px;
+}

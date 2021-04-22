@@ -1,0 +1,125 @@
+{%  extends 'main.html' %}
+
+{% block title %}
+<title>CRM | Dashboard </title>
+{% endblock %}
+
+{% block content %}
+<div class="content-dash">
+	<div class="left">
+		<br>
+		<!-- <h3>STATUS:</h3> -->
+		<div class="status-box">
+			<div class="col">
+				<div class="col-md">
+					<div class="card text-center text-white  mb-3" id="total-orders">
+						<div class="card-header">
+							<h5 class="card-title">Total Orders</h5>
+						</div>
+						<div class="card-body">
+							<h3 class="card-title">{{order_count}}</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="col-md">
+					<div class="card text-center text-white  mb-3" id="orders-delivered">
+						<div class="card-header">
+							<h5 class="card-title">Orders Delivered</h5>
+						</div>
+						<div class="card-body">
+							<h3 class="card-title">{{delivered}}</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="col-md">
+					<div class="card text-center text-white  mb-3" id="outfordel">
+						<div class="card-header">
+							<h5 class="card-title">Out for Delivery</h5>
+						</div>
+						<div class="card-body">
+							<h3 class="card-title">{{out}}</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col">
+				<div class="col-md">
+					<div class="card text-center text-white  mb-3" id="orders-pending">
+						<div class="card-header">
+							<h5 class="card-title">Orders Pending</h5>
+						</div>
+						<div class="card-body">
+							<h3 class="card-title">{{pending}}</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="customers">
+			    <br>
+				
+				<h3>Customers:</h3>
+				<hr>
+				<table class="table table-striped">
+					<thead class="table-dark">
+						<tr>
+						<th scope="col">#</th>
+						<th scope="col">Name</th>
+						<th scope="col">Phone</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for c in customers %}
+						<tr>
+						<th scope="row">{{ forloop.counter}}</th>
+						<td><a href="{% url 'customer' c.id %}">{{c.name}}</a></td>
+						<td>{{c.phone}}</td>
+						</tr>
+						{% endfor %}						
+					</tbody>
+				</table>
+				
+			</div>
+		
+	</div>
+	<div class="main">
+		<h2>Orders & Status: </h2>
+		<hr>
+		<table class="table table-striped">
+					<thead class="table-dark">
+						<tr>
+						<th scope="col">#</th>
+						<th scope="col">Product</th>
+						<th scope="col">Customer</th>
+						<th scope="col">Date</th>
+						<th scope="col">Status</th>
+						<th scope="col">Update</th>
+						<th scope="col">Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for order in orders %}
+							<tr>
+							<th scope="row">{{forloop.counter}}</th>
+							<td>{{order.product}}</td>
+							<td>{{order.customer.name}}</td>
+							<td>{{order.date_created}}</td>
+							<td>{{order.status}}</td>
+							<td><button type="button" class="btn btn-warning btn-sm">Update</button></td>
+							<td><button type="button" class="btn btn-danger btn-sm">Delete</button></td>
+							</tr>
+						{% endfor %}
+					</tbody>
+					</table>
+	</div>
+	
+</div>
+
+{%endblock %}

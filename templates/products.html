@@ -1,0 +1,37 @@
+{%  extends 'main.html' %}
+
+{% block title %}
+<title>CRM | Products </title>
+{% endblock %}
+
+{% block content %}
+<div class="products">
+	<br>
+	<div class="table-wrap">
+		<table class="table table-striped">
+			<thead class="table-dark">
+				<tr>
+				<th scope="col">Product</th>
+				<th scope="col">Category</th>
+				<th scope="col">Price</th>
+				<th scope="col">Description</th>
+				<th scope="col">Update</th>
+				<th scope="col">Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for product in products %}
+					<tr>
+						<th scope="row">{{product.name}}</th>
+						<td>{{product.category}}</td>
+						<td>{{product.price}}</td>
+						<td>{{product.description}}</td>
+						<td><button type="button" class="btn btn-warning btn-sm">Update</button></td>
+						<td><button type="button" class="btn btn-danger btn-sm">Delete</button></td>
+					</tr>			
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+{% endblock %}
