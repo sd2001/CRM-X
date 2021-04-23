@@ -132,3 +132,11 @@ td{
 	
 }
 
+.place{
+	display: inline-block;	
+}
+.right1{
+	float: right;
+	margin-top: 8px;
+	margin-right: 10px;
+}
