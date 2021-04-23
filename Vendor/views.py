@@ -34,13 +34,15 @@ def customer(request, pk):
 
     return render(request, 'customer.html', value)
 
-def createOrder(request):
-    form = OrderForm()
+def createOrder(request, pk):
+    customer = Customer.objects.get(id=pk)
+    form = OrderForm(initial={'customer': customer})
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect(f'/customers/{customer.id}')
+
             
     value = {'form': form, 'val': 'Create an Order:'}
     return render(request, 'create_form.html', value)
