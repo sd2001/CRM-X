@@ -19,11 +19,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link" aria-current="page" href="/">Dashboard</a>
+        <a class="nav-link" aria-current="page" href="/home">Dashboard</a>
         <a class="nav-link" href="/products">Products</a>
         <!-- <a class="nav-link" href="/customers">Customers</a> -->
         
       </div>
     </div>
+    <form class="d-flex">
+      <span id="hello-mssg">Hello, {{request.user}}</span>
+      <span id="logout"><a href="{% url 'logout' %}">Logout</a></span>
+    </form>
   </div>
+  
 </nav>
