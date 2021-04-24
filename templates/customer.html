@@ -1,5 +1,5 @@
 {%  extends 'main.html' %}
-
+{%load crispy_forms_tags %}
 {% block title %}
 <title>CRM | Customer </title>
 {% endblock %}
@@ -110,6 +110,18 @@
 			</a>
 		</div>					
 			<hr>
+		<!-- <details>
+			<summary>Filter Search</summary> -->
+			<form method="GET">
+				{% csrf_token %}				
+				{{myfilter.form|crispy}}
+				<div class="submit-button">
+					<button type="submit" class="btn btn-success btn-sm">Search</button>
+				</div>
+			</form>	
+			<hr>
+		<!-- </details> -->
+		<!-- <br>	 -->
 		<table class="table table-striped">
 			<thead class="table-dark">
 				<tr>
