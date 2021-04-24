@@ -6,6 +6,21 @@
 	/* font-family: 'Roboto', sans-serif; */
 }
 
+#hello-mssg{
+	/* background-color: #7bbfd8;  */
+	color: rgb(75, 75, 75);
+	font-size: 17px;
+	font-family: 'Roboto', sans-serif;
+	padding-right: 20px;
+}
+
+#logout a{
+	color:  rgb(75, 75, 75);
+	font-size: 17px;
+	font-family: 'Roboto', sans-serif;
+	text-decoration: none;
+}
+
 html, body {
   height: 100%;
 }
@@ -139,4 +154,7 @@ td{
 	float: right;
 	margin-top: 8px;
 	margin-right: 10px;
+	margin-bottom: 10px;
 }
+
+
