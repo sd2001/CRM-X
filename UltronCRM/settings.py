@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Vendor',
     'crispy_forms',
-    'django_filters'
+    'django_filters',
+    'cloudinary',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -131,3 +135,10 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
+
+# cloudinary config
+cloudinary.config( 
+  cloud_name = "sd2001", 
+  api_key = "988625174649862", 
+  api_secret = "FJd48Z4hGIPRMTyVPuIXjow1Iro" 
+)
