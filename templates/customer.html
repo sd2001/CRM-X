@@ -10,14 +10,18 @@
 		<div class="customer-info">
 			<h4>Customer Info:</h4>
 			<hr>
+			<div class="info-img">
+			   <img src="{{customer.image.url}}" width=150px height=150px alt="../static/images/default.jpg">
+			</div>
+			<hr>
 			<p><b>Name: </b>{{customer.name}} </p>
 			<p><b>Email: </b>{{customer.email}}</p>
 			<p><b>Phone: </b>{{customer.phone}}</p>
 		</div>
-		<div class="crud-button">
+		<!-- <div class="crud-button">
 			<button type="button" class="btn btn-warning btn-sm">Update</button>
 			<button type="button" class="btn btn-danger btn-sm">Delete</button>
-		</div>
+		</div> -->
 		<br>
 			
 		<div class="status-box">
@@ -103,12 +107,12 @@
 			<div class="place left1">
 				<h3>Your Orders: </h3>	
 			</div>
-		<div class="place right1">
+		<!-- <div class="place right1">
 			<a href="{% url 'createOrder' customer.id %}">
 				<button type="button" class="btn btn-info btn-sm">Place Order
 				</button>
 			</a>
-		</div>					
+		</div>					 -->
 			<hr>
 		<!-- <details>
 			<summary>Filter Search</summary> -->
@@ -126,30 +130,27 @@
 			<thead class="table-dark">
 				<tr>
 				<th scope="col">Product</th>
+				<th scope="col">Category</th>
+				<!-- <th scope="col">Tag</th> -->
 				<th scope="col">Status</th>
 				<th scope="col">Price</th>
 				<th scope="col">Date Ordered</th>
-				<th scope="col">Update</th>
-				<th scope="col">Delete</th>
 				</tr>
 			</thead>
 			<tbody>
 				{% for order in orders %}
 					<tr>
 						<th scope="row">{{order.product}}</th>
+						<th>{{order.product.category}}</th>
+						<!-- <th>{{order.product.tag}}</th> -->
 						<td>{{order.status}}</td>
 						<td>{{order.product.price}}</td>
 						<td>{{order.date_created}}</td>
-						<td>
-								<a href="{% url 'updateOrder' order.id %}""><button type="button" action="{% url 'updateOrder' order.id %}" class="btn btn-warning btn-sm">Update</button></a>
-							</td>
-							<td>
-								<a href="{% url 'deleteOrder' order.id %}""><button type="button" class="btn btn-danger btn-sm">Delete</button></a>
-							</td>
+						
 					</tr>			
 				{% endfor %}
 			</tbody>
-		</table>		
+		</table>			
 	</div>
 	</div>
 	
