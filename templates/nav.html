@@ -18,12 +18,19 @@
       <i class="fas fa-bars"></i>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      {% if request.user.is_staff %}
       <div class="navbar-nav">
         <a class="nav-link" aria-current="page" href="/home">Dashboard</a>
         <a class="nav-link" href="/products">Products</a>
-        <!-- <a class="nav-link" href="/customers">Customers</a> -->
-        
+        <!-- <a class="nav-link" href="/customers">Customers</a> -->        
       </div>
+      {% else %}
+      <div class="navbar-nav">
+        <a class="nav-link" aria-current="page" href="/myprofile">Profile</a>
+        <!-- <a class="nav-link" href="/products">Products</a> -->
+        <!-- <a class="nav-link" href="/customers">Customers</a> -->        
+      </div>
+     {% endif %} 
     </div>
     <form class="d-flex">
       <span id="hello-mssg">Hello, {{request.user}}</span>
