@@ -1,0 +1,157 @@
+{%  extends 'main.html' %}
+{%load crispy_forms_tags %}
+{% block title %}
+<title>CRM | Customer </title>
+{% endblock %}
+
+{% block content %}
+<div class="content-dash">
+	<div class="left">	
+		<div class="customer-info">
+			<h4>Customer Info:</h4>
+			<hr>
+			<div class="info-img">
+			   <img src="{{customer.image.url}}" width=150px height=150px alt="../static/images/default.jpg">
+			</div>
+			<hr>
+			<p><b>Name: </b>{{customer.name}} </p>
+			<p><b>Email: </b>{{customer.email}}</p>
+			<p><b>Phone: </b>{{customer.phone}}</p>
+		</div>
+		<div class="crud-button">
+			<a href="/updateProfile"><button type="button" class="btn btn-warning btn-sm">Update Profile</button></a>
+		</div>
+		<br>
+			
+		<div class="status-box">
+			<div class="col">
+				<div class="col-md">
+					<div class="card text-center text-white  mb-3" id="total-orders">
+						<div class="card-header">
+							<h5 class="card-title">Total Orders</h5>
+						</div>
+						<div class="card-body">
+							<h3 class="card-title">{{order_count}}</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="col-md">
+					<div class="card text-center text-white  mb-3" id="orders-delivered">
+						<div class="card-header">
+							<h5 class="card-title">Orders Delivered</h5>
+						</div>
+						<div class="card-body">
+							<h3 class="card-title">{{delivered}}</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col">
+				<div class="col-md">
+					<div class="card text-center text-white  mb-3" id="outfordel">
+						<div class="card-header">
+							<h5 class="card-title">Out for Delivery</h5>
+						</div>
+						<div class="card-body">
+							<h3 class="card-title">{{out}}</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col">
+				<div class="col-md">
+					<div class="card text-center text-white  mb-3" id="orders-pending">
+						<div class="card-header">
+							<h5 class="card-title">Orders Pending</h5>
+						</div>
+						<div class="card-body">
+							<h3 class="card-title">{{pending}}</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>		
+		
+		<div class="recent">
+			<h4>Recent Orders:</h4>
+			<table class="table table-striped">
+					<thead class="table-dark">
+						<tr>
+						<th scope="col">#</th>
+						<th scope="col">Product</th>
+						<th scope="col">Date Ordered</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for item in last5 %}
+						<tr>
+						<th scope="row">{{ forloop.counter}}</th>
+						<td>{{item.product}}</td>
+						<td>{{item.date_created}}</td>
+						</tr>
+						{% endfor %}						
+					</tbody>
+					</table>
+		</div>
+		
+	</div>
+	<div class="main">
+		<div class="table-wrap">
+			<div class="place left1">
+				<h3>Your Orders: </h3>	
+			</div>
+		<div class="place right1">
+			<a href="{% url 'placeorder' %}">
+				<button type="button" class="btn btn-info btn-sm">Place Order
+				</button>
+			</a>
+		</div>					
+			<hr>
+		<!-- <details>
+			<summary>Filter Search</summary> -->
+			<form method="GET">
+				{% csrf_token %}				
+				{{myfilter.form|crispy}}
+				<div class="submit-button">
+					<button type="submit" class="btn btn-success btn-sm">Search</button>
+				</div>
+			</form>	
+			<hr>
+		<!-- </details> -->
+		<!-- <br>	 -->
+		<table class="table table-striped">
+			<thead class="table-dark">
+				<tr>
+				<th scope="col">Product</th>
+				<th scope="col">Status</th>
+				<th scope="col">Price</th>
+				<th scope="col">Date Ordered</th>
+				<!-- <th scope="col">Update</th> -->
+				<th scope="col">Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for order in orders %}
+					<tr>
+						<th scope="row">{{order.product}}</th>
+						<td>{{order.status}}</td>
+						<td>{{order.product.price}}</td>
+						<td>{{order.date_created}}</td>						
+						<td>
+							<a href="{% url 'deleteOrder' order.id %}""><button type="button" class="btn btn-danger btn-sm">Delete</button></a>
+						</td>
+					</tr>			
+				{% endfor %}
+			</tbody>
+		</table>		
+	</div>
+	</div>
+	
+</div>
+{% endblock %}
