@@ -1,0 +1,39 @@
+{%  extends 'main.html' %}
+{%load crispy_forms_tags %}
+{% load cloudinary %}
+{% block title %}
+<title>CRM | Customer </title>
+{% endblock %}
+
+{% block content %}
+<div class="content-dash">
+	<div class="left">	
+		<div class="customer-info">
+			<h4>Customer Info:</h4>
+			<hr>
+			<div class="info-img">
+			   <img src="{{customer.image.url}}" width=150px height=150px alt="../static/images/default.jpg">
+			</div>
+			<hr>
+			<p><b>Name: </b>{{customer.name}} </p>
+			<p><b>Email: </b>{{customer.email}}</p>
+			<p><b>Phone: </b>{{customer.phone}}</p>
+		</div>	
+	</div>
+	<div class="main">
+		<div class="updateprofile">
+			<h3>Update your Data: </h3>
+			<hr>
+			<form method="POST" enctype="multipart/form-data">
+				{% csrf_token %}				
+				{{form|crispy}}
+				<div class="submit-button">
+					<button type="submit" class="btn btn-success btn-sm">Update</button>
+				</div>
+			</form>	
+		</div>
+	</div>
+		
+	
+</div>
+{% endblock %}
