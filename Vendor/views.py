@@ -34,9 +34,14 @@ def signup(request):
     form = CreateUserForm()
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
-        if form.is_valid():
+        if form.is_valid(): 
+            user = form.save()
+            group = Group.objects.get(name='Customer')
+            user.groups.add(group)
+            
+            Customer.objects.create(user=user, name=user.username, email=user.email)
             messages.success(request, 'Profile Created.')
-            user = form.save()            
+                            
             
             return redirect('login')
     value = {'form': form}    
