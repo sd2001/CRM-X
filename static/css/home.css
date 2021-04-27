@@ -93,3 +93,9 @@
 	text-align: center;
 	color:rgb(115, 23, 219)
 }
+
+.home-signup a{
+	font-size: 18px;
+	color: rgb(85, 20, 204);
+	text-decoration: none;
+}
