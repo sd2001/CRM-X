@@ -6,10 +6,15 @@ from .filters import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import Group, User
 from django.contrib import messages
+from .decorators import admin_only, authenticate_user, allowed_users
+
+@authenticate_user
 def home(request):
     return render(request, 'home.html')
 
+@authenticate_user
 def login_user(request):
     if request.method == 'POST':
         u = request.POST.get('username')
@@ -24,28 +29,28 @@ def login_user(request):
         
     return render(request, 'login.html')
 
-def signup(request):
-    if request.user.is_authenticated():
-        return redirect('home')
-    else:        
-        form = CreateUserForm()
-        if request.method == 'POST':
-            form = CreateUserForm(request.POST)
-            # print(form.cleaned_data)
-            if form.is_valid():
-                messages.success(request, 'Profile Created.')
-                form.save()
-                return redirect('login')
-        value = {'form': form}    
-        return render(request, 'signup.html', value)
+@authenticate_user
+def signup(request):          
+    form = CreateUserForm()
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            messages.success(request, 'Profile Created.')
+            user = form.save()            
+            
+            return redirect('login')
+    value = {'form': form}    
+    return render(request, 'signup.html', value)
 
 @login_required(login_url="login")
 def logout_user(request):
     logout(request)
-    return redirect('login')
+    return redirect('home')
 
 @login_required(login_url="login")
+@admin_only
 def dashboard(request):
+    # print(request.user)
     orders = Order.objects.all()
     order_count = orders.count()
     delivered = orders.filter(status='Delivered').count()
@@ -64,12 +69,14 @@ def dashboard(request):
     return render(request, 'dashboard.html', value)
 
 @login_required(login_url="login")
+@allowed_users(allowed_roles=['Admin'])
 def products(request):
     products = Product.objects.all()
     value = {'products': products}
     return render(request, 'products.html', value)
 
 @login_required(login_url="login")
+@allowed_users(allowed_roles=['Admin'])
 def customer(request, pk):
     customer = Customer.objects.get(id=pk)
     orders = customer.order_set.all()
@@ -88,12 +95,12 @@ def customer(request, pk):
 @login_required(login_url="login")
 def createOrder(request, pk):
     customer = Customer.objects.get(id=pk)
-    form = OrderForm(initial={'customer': customer})
+    form = OrderForm({'customer': customer})
     if request.method == 'POST':
         form = OrderForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(f'/customers/{customer.id}')
+            return redirect(f'/home')
 
             
     value = {'form': form, 'val': 'Create an Order:'}
@@ -121,6 +128,7 @@ def deleteOrder(request, pk):
     return render(request, 'delete.html', value)
 
 @login_required(login_url="login")
+@allowed_users(allowed_roles=['Admin'])
 def updateProduct(request, pk):
     product = Product.objects.get(id=pk)
     form = ProductForm(instance=product)
@@ -132,6 +140,7 @@ def updateProduct(request, pk):
     return render(request, 'create_form.html', value)
 
 @login_required(login_url="login")
+@allowed_users(allowed_roles=['Admin'])
 def deleteProduct(request, pk):
     product = Product.objects.get(id=pk)
     if request.method == "POST":
@@ -140,5 +149,57 @@ def deleteProduct(request, pk):
         
     value = {'order': product}
     return render(request, 'delete.html', value)
+
+@allowed_users(allowed_roles=['Customer'])
+def myprofile(request):   
+    # print(request.user)
+    customer = Customer.objects.get(user=request.user)
+    # if customer.name == request.user:
+    orders = customer.order_set.all()
+    orders_last5 = orders.reverse()[:5]
+    order_count = orders.count()
+    delivered = orders.filter(status='Delivered').count()
+    pending = orders.filter(status='Pending').count()
+    out = orders.filter(status='Out for delivery').count()
     
-    
+    myfilter = Orderfilter(request.GET, queryset=orders)
+    orders = myfilter.qs
+    value = {'orders': orders, 'customer': customer, 'order_count': order_count, 'delivered':delivered, 'pending': pending, 'out': out, 'last5': orders_last5, 'myfilter': myfilter }
+
+    return render(request, 'myprofile.html', value)
+
+@login_required(login_url="login")    
+@allowed_users(allowed_roles=['Customer'])
+def updateprofile(request):
+    customer = request.user.customer
+    customer = Customer.objects.get(name=customer)
+    user = User.objects.get(username=request.user)
+    form = CustomerUpdate(instance=customer)
+    if request.method == 'POST':
+        form = CustomerUpdate(request.POST, request.FILES, instance=customer)
+        if form.is_valid():
+            cus = form.save() 
+            user.username = form.cleaned_data['name']
+            user.save()
+            return redirect('myprofile')
+        
+    value = {'form': form, 'customer': customer}
+    return render(request, 'put_customer.html', value)
+
+@login_required(login_url="login")    
+@allowed_users(allowed_roles=['Customer'])
+def placeorderCustomer(request):
+    c = request.user
+    customer = Customer.objects.get(name=c)
+    form = OrderFormCustomer(instance=customer)
+    if request.method == 'POST':
+        form = OrderFormCustomer(request.POST)
+        if form.is_valid():           
+            new = form.save()
+            new.customer = customer
+            new.save()     
+            return redirect('/home')
+
+            
+    value = {'form': form, 'val': 'Create an Order:'}
+    return render(request, 'create_form.html', value)
