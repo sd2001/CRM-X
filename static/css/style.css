@@ -34,7 +34,7 @@ html, body {
 }
 
 .left{
-	flex: 3.8;
+	flex: 4;
 	background-color: rgba(238, 231, 231, 0.699);
 	padding: 20px;
 	height: 1000px;
