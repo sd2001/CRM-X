@@ -128,13 +128,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     f"{BASE_DIR}/static"
 ]
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+# https:/
+# /docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
