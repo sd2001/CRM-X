@@ -36,10 +36,14 @@
 			<div class="home-signup">
 			<button type="submit" class="signup1">SUBMIT</button>
 			</div>
+			<br>
 			<div class="home-login">
 			<a href="/login">LOGIN</a>
 			</div>
-			<p class="flash-mssgs">{{form.error}}</p>
+			<br>
+			{% if form.errors %}
+				<p>{{form.errors}}</p>
+			{% endif %}
 		</form>
 
 	</div>
