@@ -14,7 +14,10 @@ from pathlib import Path
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,7 +31,7 @@ SECRET_KEY = 'django-insecure-&%*y&g^emd56xe_ul5c2u0$8_v%i@g57p5kglmk9#3n2t98p*k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -40,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Vendor',
+    'Vendor.apps.VendorConfig',
     'crispy_forms',
     'django_filters',
     'cloudinary',
@@ -138,7 +141,15 @@ AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
 
 # cloudinary config
 cloudinary.config( 
-  cloud_name = "sd2001", 
-  api_key = "988625174649862", 
-  api_secret = "FJd48Z4hGIPRMTyVPuIXjow1Iro" 
+  cloud_name = os.environ.get('CLOUD'), 
+  api_key = os.environ.get('API_KEY'), 
+  api_secret = os.environ.get('SECRET')
 )
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_USE_TLS = True
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER') 
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD') 
