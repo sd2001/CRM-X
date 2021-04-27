@@ -40,10 +40,9 @@ def signup(request):
             user.groups.add(group)
             
             Customer.objects.create(user=user, name=user.username, email=user.email)
-            messages.success(request, 'Profile Created.')
-                            
-            
+            messages.success(request, 'Profile Created.')                          
             return redirect('login')
+            
     value = {'form': form}    
     return render(request, 'signup.html', value)
 
