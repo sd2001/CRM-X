@@ -62,7 +62,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_filters',
     'cloudinary',
-    'defender',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -75,7 +74,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-    'defender.middleware.FailedLoginMiddleware',
 ]
 
 ROOT_URLCONF = 'UltronCRM.urls'
