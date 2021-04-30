@@ -42,7 +42,7 @@
    ```   
 
    ```
-   cd FuzzyUrls
+   cd CRM-X
    ```
 
    ```
