@@ -23,17 +23,18 @@
    <br><strong>FuzzyUrls</strong> is available under MIT License, read the LICENSE file for more info
   <p>
   </div><br>
-<div align="center">
-  <p>    
-  <img src="https://img.shields.io/badge/How%20to%20start%20locally%F0%9F%9B%A0%EF%B8%8F-purple?logo=visual-studio-code&style=for-the-badge" /><br>
-</div>
+
 <div align="center">  
   <img src="github-media/admin.jpg"/>
  </div>
+ <div align="center">
+  <p>    
+  <img src="https://img.shields.io/badge/How%20to%20start%20locally%F0%9F%9B%A0%EF%B8%8F-purple?logo=visual-studio-code&style=for-the-badge" /><br>
+</div>
  
   - **Fork** the Repository
   - Open your **Terminal / Cmd**
-  - 
+  
  <br>
  
    ```
@@ -56,9 +57,9 @@
    ```
  
  <div align="center">
-  Server starts running on port <strong>8000🚀</strong>
-  <br>
-  To migrate the databases and get staff-access:
+  <img src="https://img.shields.io/badge/Server%20starts%20running%20on%20port%20-%208000%F0%9F%9A%80-qwerty?logo=Southwest%20Airlines&style=for-the-badge"/>
+  <br><br>
+  <img src="https://img.shields.io/badge/Database%20Migrations%20&%20Staff/Admin%20Access-olive?logo=postgresql&style=for-the-badge"/>
  </div><br>
  
  ```
@@ -69,7 +70,7 @@
  ```
  
    <div align="center">
-     Visit 'localhost/admin' and login with the entered credentials 
+     <img src="https://img.shields.io/badge/Visit%20'localhost/admin'%20and%20login%20with%20the%20entered%20credentials-dimgray?logo=curl&style=for-the-badge"/>    
    </div><br>
    
 
