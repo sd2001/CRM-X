@@ -20,7 +20,7 @@
  <p>
  <br>
    <img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge" /><br>
-   <br><strong>FuzzyUrls</strong> is available under MIT License, read the LICENSE file for more info
+   <br><strong>CRM-X</strong> is available under MIT License, read the LICENSE file for more info
   <p>
   </div><br>
 
