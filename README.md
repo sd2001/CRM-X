@@ -60,6 +60,7 @@
   <img src="https://img.shields.io/badge/Server%20starts%20running%20on%20port%20-%208000%F0%9F%9A%80-qwerty?logo=Southwest%20Airlines&style=for-the-badge"/>
   <br><br>
   <img src="https://img.shields.io/badge/Database%20Migrations%20&%20Staff/Admin%20Access-olive?logo=postgresql&style=for-the-badge"/>
+  
  </div><br>
  
  ```
